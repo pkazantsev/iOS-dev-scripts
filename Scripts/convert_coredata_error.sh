@@ -6,15 +6,15 @@ if [ -z $1 ]; then
 fi
 
 # 1. Split errors to separate blocks
+# 2. Replace capital \U with small \u
+# 3. Replace double slash with single
+# 4. Convert character codes to unicode symbols
 cat $1 | sed 's/\", "/\"\
 \
 "/g' \
-# 2. Replace capital \U with small \u
        | sed 's/\\U/\\u/g' \
-# 3. Replace double slash with single
        | sed 's/\\\\/\\/g' \
        | sed 's/\\"/\"/g' \
        | sed 's/\\n/\
 /g' \
-# 4. Convert character codes to unicode symbols
        | ascii2uni  -a U -q
