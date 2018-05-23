@@ -33,9 +33,9 @@ else
   answer=$SIM_LINES
 fi
 
-SIM_ID=$(echo "$answer" | sed 's/^[^(]*(\([^)]*\)).*/\1/')
-SIM_NAME=$(echo "$answer"| sed -e 's/ (.*$//')
+SIM_ID=$(echo "$answer" | sed 's/.*(\([A-Z0-9-]*\))$/\1/')
+SIM_NAME=$(echo "$answer"| sed -e 's/ ([A-Z0-9-]*)$//')
 
-echo "The app $APP_BUNDLE_ID will now be deleted from $SIM_NAME"
+echo "The app '$APP_BUNDLE_ID' will now be deleted from '$SIM_NAME'"
 
 xcrun simctl uninstall "$SIM_ID" "$APP_BUNDLE_ID"
