@@ -6,7 +6,7 @@ if [ -z $1 ]; then
 fi
 APP_BUNDLE_ID=$1
 
-SIM_LINES=$(xcrun simctl list | sed '/== Device Pairs/q' | grep Booted | sed -e 's/^[ \t]*//' | sed -e 's/ (Booted)//')
+SIM_LINES=$(xcrun simctl list | sed '/== Device Pairs/q' | grep Booted | sed -e 's/ (Booted)//' | sed -e 's/^[ \t]*//' | sed -e 's/[ \t]*$//')
 
 # Split simulators list by newline, not by space
 oldIFS=$IFS
